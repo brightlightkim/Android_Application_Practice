@@ -41,20 +41,40 @@ public class MainActivity extends AppCompatActivity {
         nextButton = findViewById(R.id.next_button);
         questionTextView = findViewById(R.id.question_text_view);
 
-        trueButton.setOnClickListener(view -> Toast.makeText(
-                MainActivity.this,
-                R.string.correct_toast,
-                Toast.LENGTH_SHORT)
-                .show());
+        trueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkAnswer(true);
+            }
+        });
 
-        falseButton.setOnClickListener(view -> Toast.makeText(
-                MainActivity.this,
-                R.string.incorrect_toast,
-                Toast.LENGTH_SHORT)
-                .show());
+        falseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkAnswer(false);
+            }
+        });
 
+        nextButton.setOnClickListener(view -> {
+            currentIndex = (currentIndex + 1) % questionBank.length;
+            updateQuestion();
+        });
+
+        updateQuestion();
+    }
+
+    private void updateQuestion() {
         int questionTextResId = questionBank[currentIndex].getTextResId();
         questionTextView.setText(questionTextResId);
-
     }
+
+    private void checkAnswer(boolean userAnswer) {
+        boolean correctAnswer = questionBank[currentIndex].getAnswer();
+
+        int messageResId = ((userAnswer == correctAnswer) ?
+                R.string.correct_toast : R.string.incorrect_toast);
+
+        Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
+    }
+
 }

@@ -16,7 +16,7 @@ public class Question {
         this.textResId = textResId;
     }
 
-    public boolean isAnswer() {
+    public boolean getAnswer() {
         return answer;
     }
 
