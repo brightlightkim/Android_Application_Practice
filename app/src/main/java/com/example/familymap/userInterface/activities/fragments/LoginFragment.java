@@ -46,8 +46,8 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        mRegisterRequest = new RegisterRequest();
-        mLoginRequest = new LoginRequest();
+        mRegisterRequest = new RegisterRequest(null, null, null, null, null, null);
+        mLoginRequest = new LoginRequest(null, null);
     }
 
     @Override
