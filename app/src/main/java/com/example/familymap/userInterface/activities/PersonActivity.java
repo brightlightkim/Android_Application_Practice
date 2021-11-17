@@ -34,7 +34,6 @@ public class PersonActivity extends AppCompatActivity {
 
     private DataCache model = DataCache.initialize();
 
-    //________________________ onCreate and other Activity functions ____________________________________
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -76,7 +75,6 @@ public class PersonActivity extends AppCompatActivity {
         updateUI();
     }
 
-    //--****************-- Initialize the PersonActivity Adapter --***************--
     private void updateUI()
     {
         List<Person> relatives = new ArrayList<>(model.findRelatives(currPerson.getPersonID()));
@@ -115,7 +113,6 @@ public class PersonActivity extends AppCompatActivity {
         return true;
     }
 
-    //--****************-- Filter Event based on Filters --***************--
     private List<Event> filterEvents(List<Event> eventsList)
     {
         List<Event> testEventList = new ArrayList<>();
@@ -127,7 +124,6 @@ public class PersonActivity extends AppCompatActivity {
         return testEventList;
     }
 
-    //--****************-- Filter People based on Filters --***************--
     private List<Person> filterPersons(List<Person> personsList)
     {
         List<Person> filteredPersonsList = new ArrayList<>();

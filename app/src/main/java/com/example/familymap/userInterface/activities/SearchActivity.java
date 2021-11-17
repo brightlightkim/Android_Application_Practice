@@ -33,7 +33,6 @@ public class SearchActivity extends AppCompatActivity {
 
     private DataCache model = DataCache.initialize();
 
-    //________________________ onCreate and other Activity functions ____________________________________
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -74,7 +73,6 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-    //--****************-- Overriding the up Button --***************--
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -87,7 +85,6 @@ public class SearchActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //--****************-- Initializing the Search Adapter --***************--
     private void updateUI()
     {
         List<Object> objectList = new ArrayList<>();
@@ -104,7 +101,6 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
-    //--****************-- Get the Person List that contains the Search Input --***************--
     private void getPersonsList(Map<String, Person> allPeople, List<Object> objectList)
     {
         for (Person person: allPeople.values()) {

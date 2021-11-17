@@ -23,7 +23,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchHolder> {
     private Context context;
     private LayoutInflater inflater;
 
-    // ========================== Constructor ========================================
     public SearchAdapter(List<Object> objects, Context context)
     {
         this.context = context;
@@ -31,7 +30,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchHolder> {
         inflater = LayoutInflater.from(context);
     }
 
-    //--****************-- Creates the View Holder --***************--
     @Override
     public SearchHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
@@ -39,7 +37,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchHolder> {
         return new SearchHolder(view);
     }
 
-    //--****************-- Binds the View Holder to a SearchHolder --***************--
     @Override
     public void onBindViewHolder(SearchHolder holder, int position)
     {
@@ -66,14 +63,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchHolder> {
         }
     }
 
-    //--****************-- Gets size of items --***************--
     @Override
     public int getItemCount()
     {
         return mObjects.size();
     }
 
-    //--****************-- Switch to Event Activity --***************--
     private void eventClicked(Event event)
     {
         Intent intent = new Intent(context, EventActivity.class);
@@ -82,7 +77,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchHolder> {
         context.startActivity(intent);
     }
 
-    //--****************-- Switch to Person Activity --***************--
     private void personsClicked(Person person)
     {
         Intent intent = new Intent(context, PersonActivity.class);

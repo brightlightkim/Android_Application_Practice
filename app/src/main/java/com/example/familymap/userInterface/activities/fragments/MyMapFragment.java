@@ -18,6 +18,7 @@ import com.example.familymap.data.DataCache;
 import com.example.familymap.data.Filter;
 import com.example.familymap.data.MapColor;
 import com.example.familymap.data.Settings;
+import com.example.familymap.userInterface.activities.FilterActivity;
 import com.example.familymap.userInterface.activities.PersonActivity;
 import com.example.familymap.userInterface.activities.SearchActivity;
 import com.example.familymap.userInterface.activities.SettingActivity;
@@ -60,11 +61,13 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback {
     private DataCache model = DataCache.initialize();
 
     // ========================== Constructors ========================================
-    public MyMapFragment(){}
+    public MyMapFragment(){
 
-    public MyMapFragment (String eventId)
+    }
+
+    public MyMapFragment(String eventId)
     {
-        isEvent = eventId != null;
+        isEvent = (eventId != null);
     }
 
     ///////////// Text OnClickListener /////////////////////

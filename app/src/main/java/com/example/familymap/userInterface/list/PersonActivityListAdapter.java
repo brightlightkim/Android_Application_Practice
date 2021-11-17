@@ -30,7 +30,6 @@ public class PersonActivityListAdapter extends BaseExpandableListAdapter {
 
     private DataCache model = DataCache.initialize();
 
-    // ========================== Constructor ========================================
     public PersonActivityListAdapter(Context context, List<String> listDataHeader,
                                      List<Event> eventsList, List<Person> personsList,
                                      Person person) {
@@ -41,14 +40,12 @@ public class PersonActivityListAdapter extends BaseExpandableListAdapter {
         this.mCurrPerson = person;
     }
 
-    //_______________________________ List Adapter Override Functions __________________________________________
     @Override
     public int getGroupCount()
     {
         return mHeaders.size();
     }
 
-    //--****************-- Get Number of Children --***************--
     @Override
     public int getChildrenCount(int groupPosition)
     {
@@ -60,7 +57,6 @@ public class PersonActivityListAdapter extends BaseExpandableListAdapter {
         }
     }
 
-    //--****************-- Get Drop Down Group --***************--
     @Override
     public Object getGroup(int groupPosition)
     {
@@ -72,7 +68,6 @@ public class PersonActivityListAdapter extends BaseExpandableListAdapter {
         }
     }
 
-    //--****************-- Get Child --***************--
     @Override
     public Object getChild(int groupPosition, int childPosition)
     {
@@ -84,7 +79,6 @@ public class PersonActivityListAdapter extends BaseExpandableListAdapter {
         }
     }
 
-    //--****************-- Functions not used, but needed to be Overridden --***************--
     @Override
     public long getGroupId(int groupPosition)
     {
@@ -103,7 +97,6 @@ public class PersonActivityListAdapter extends BaseExpandableListAdapter {
         return false;
     }
 
-    //--****************-- Get the Header layout and inflate --***************--
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent)
     {
@@ -121,7 +114,6 @@ public class PersonActivityListAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
-    //--****************-- Get the Child Layout and inflate --***************--
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent)
     {
@@ -157,7 +149,6 @@ public class PersonActivityListAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
-    //--****************-- Set Child to Selectable --***************--
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition)
     {
@@ -165,7 +156,6 @@ public class PersonActivityListAdapter extends BaseExpandableListAdapter {
     }
 
 
-    //--****************-- Initiate Text and Icon of a Child Layout --***************--
     private void update(Event events, Person persons)
     {
         if (persons == null) {
@@ -183,7 +173,6 @@ public class PersonActivityListAdapter extends BaseExpandableListAdapter {
         }
     }
 
-    //--****************-- Find Relationships of a Person --***************--
     private String getRelationship(Person persons)
     {
         if (mCurrPerson.getSpouseID().equals(persons.getPersonID())) {

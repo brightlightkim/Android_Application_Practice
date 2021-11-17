@@ -22,7 +22,6 @@ public class SearchHolder extends RecyclerView.ViewHolder {
     private TextView mDescription;
     private ImageView mIcon;
 
-    // ========================== Constructor ========================================
     public SearchHolder(View itemView)
     {
         super(itemView);
@@ -39,7 +38,6 @@ public class SearchHolder extends RecyclerView.ViewHolder {
         return mLinearLayout;
     }
 
-    //--****************-- Bind the Event Holders --***************--
     public void bindEvent(Object currObject) {
 
         final Event event = (Event) currObject;
@@ -55,7 +53,6 @@ public class SearchHolder extends RecyclerView.ViewHolder {
 
     }
 
-    //--****************-- Bind the Person Holders --***************--
     public void bindPerson(Object currObject)
     {
         Person currPerson = (Person) currObject;

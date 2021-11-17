@@ -20,14 +20,12 @@ public class FilterRecycleAdapter extends RecyclerView.Adapter<FilterHolder> {
 
     private Filter filter = DataCache.initialize().getFilter();
 
-    // ========================== Constructor ========================================
     public FilterRecycleAdapter(List<String> newEventTypes, Context context)
     {
         eventTypesList = newEventTypes;
         inflater = LayoutInflater.from(context);
     }
 
-    //--****************-- Creates the View Holder --***************--
     @Override
     public FilterHolder onCreateViewHolder (ViewGroup viewGroup, final int i)
     {
@@ -35,7 +33,6 @@ public class FilterRecycleAdapter extends RecyclerView.Adapter<FilterHolder> {
         return new FilterHolder (filterView);
     }
 
-    //--****************-- Binds the View Holder to a FilterHolder --***************--
     @Override
     public void onBindViewHolder(final FilterHolder filterHolder, final int i)
     {
@@ -63,14 +60,12 @@ public class FilterRecycleAdapter extends RecyclerView.Adapter<FilterHolder> {
         }
     }
 
-    //--****************-- Gets size of items --***************--
     @Override
     public int getItemCount()
     {
         return eventTypesList.size();
     }
 
-    //--****************-- Default Filters onClick Function --***************--
     private void defaultFilterClicked(int index, boolean isChecked)
     {
         switch (index){
@@ -89,7 +84,6 @@ public class FilterRecycleAdapter extends RecyclerView.Adapter<FilterHolder> {
         }
     }
 
-    //--****************-- Event Type Filters onClick Function --***************--
     private void eventFilterClicked(int index, boolean isChecked)
     {
         if (filter.containsEventType(eventTypesList.get(index)) && !isChecked){

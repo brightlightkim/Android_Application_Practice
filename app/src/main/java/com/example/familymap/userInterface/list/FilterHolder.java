@@ -17,7 +17,6 @@ public class FilterHolder extends RecyclerView.ViewHolder {
     private Switch mEventSwitch;
     private Filter filter = DataCache.initialize().getFilter();
 
-    // ========================== Constructor ========================================
     public FilterHolder(View itemView)
     {
         super(itemView);
@@ -32,7 +31,6 @@ public class FilterHolder extends RecyclerView.ViewHolder {
         return mEventSwitch;
     }
 
-    //--****************-- Binds Event Types in the Filter Menu --***************--
     public void bind(String eventType)
     {
         String eventTypeText = eventType + " Events";
@@ -43,7 +41,6 @@ public class FilterHolder extends RecyclerView.ViewHolder {
         mEventDescription.setText(eventDescription.toUpperCase());
     }
 
-    //--****************-- Binds Defaults in the Filter menu --***************--
     public void bindDefaults(String defaultText, int index)
     {
         String defaultDescription;

@@ -8,11 +8,12 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import com.example.familymap.R;
 
+import com.example.familymap.userInterface.activities.fragments.*;
+
 public class MainActivity extends AppCompatActivity implements LoginFragment.LoginListener {
 
     private FragmentManager fm = getSupportFragmentManager();
 
-    //________________________ onCreate and other Activity functions ____________________________________
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -34,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
         }
     }
 
-    //--****************-- On Login success --***************--
     @Override
     public void loginComplete()
     {

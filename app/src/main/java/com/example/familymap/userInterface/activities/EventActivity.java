@@ -10,10 +10,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.familymap.R;
+import com.example.familymap.userInterface.activities.fragments.*;
 
 public class EventActivity extends AppCompatActivity {
 
-    //________________________ onCreate and other Activity functions ____________________________________
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -34,7 +34,6 @@ public class EventActivity extends AppCompatActivity {
 
     }
 
-    //--****************-- Overriding the up Button --***************--
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {

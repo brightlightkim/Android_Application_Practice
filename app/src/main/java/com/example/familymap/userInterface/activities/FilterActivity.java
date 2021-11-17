@@ -1,4 +1,4 @@
-package com.example.familymap.userInterface.activities.fragments;
+package com.example.familymap.userInterface.activities;
 
 import android.os.Bundle;
 import android.view.Menu;

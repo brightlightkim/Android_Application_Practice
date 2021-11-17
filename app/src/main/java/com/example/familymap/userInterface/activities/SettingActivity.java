@@ -39,7 +39,6 @@ public class SettingActivity extends AppCompatActivity implements DataTask.DataC
     private Settings currSettings;
     private DataCache model = DataCache.initialize();
 
-    //______________________________________ onCreate and other Activity functions _________________________________________________
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -86,7 +85,6 @@ public class SettingActivity extends AppCompatActivity implements DataTask.DataC
         mSpouseSpinner.setSelection(model.getSettings().getSettingsSpinnerSelections(2));
         mMapSpinner.setSelection(model.getSettings().getSettingsSpinnerSelections(3));
 
-        //--****************************-- Spinner Listeners --*******************************--
         mLifeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
@@ -191,7 +189,6 @@ public class SettingActivity extends AppCompatActivity implements DataTask.DataC
             {}
         });
 
-        //--****************************-- Switch Listeners --*******************************--
         mLifeStory.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
@@ -237,7 +234,6 @@ public class SettingActivity extends AppCompatActivity implements DataTask.DataC
 
     }
 
-    //--****************-- Overriding the up Button --***************--
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -255,14 +251,12 @@ public class SettingActivity extends AppCompatActivity implements DataTask.DataC
         return true;
     }
 
-    //--****************-- Re-Sync Function --***************--
     private void resyncApp()
     {
         DataTask dataTask = new DataTask(model.getServerHost(), model.getIpAddress(), this);
         dataTask.execute(model.getAuthToken());
     }
 
-    //--****************-- Re-sync Communication --***************--
     @Override
     public void onExecuteCompleteData(String message)
     {

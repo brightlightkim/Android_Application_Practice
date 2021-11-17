@@ -41,7 +41,6 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
     private Button mLoginButton;
     private Button mRegisterButton;
 
-    //________________________ onCreate and other Fragment functions ____________________________________
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -143,7 +142,6 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
         return v;
     }
 
-    //--****************************-- onExecuteComplete --*******************************--
     @Override
     public void onExecuteComplete(String message)
     {
@@ -151,7 +149,6 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
         loginListener.loginComplete();
     }
 
-    //--*****************-- Check to see if buttons should be enabled --*******************--
     private void validate()
     {
         if (validateRegisterButton()){
@@ -190,7 +187,6 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
                 TextUtils.isEmpty(mPassword.getText());
     }
 
-    ////////// Public Interface for Tasks ////////////
     public interface LoginListener {
         void loginComplete();
     }
@@ -200,7 +196,6 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
         loginListener = logListen;
     }
 
-    ////////////// TextWatcher //////////////
     private class Enabler implements TextWatcher {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
