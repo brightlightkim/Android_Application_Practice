@@ -1,4 +1,4 @@
-package com.example.familymap;
+package com.example.familymap.net;
 
 import com.google.gson.Gson;
 
@@ -19,36 +19,8 @@ import Result.RegisterResult;
 
 public class ServerProxy { //ServerFacade
 
-    //TODO: What I need to worry about for the Client
-    //login
-    public LoginResult login(LoginRequest request){
-        return null;
-    }
-
-    //register
-    public RegisterResult register(RegisterRequest request){
-        return null;
-    }
-
-    //getPeople
-    public PersonsResult getPeople(String personID){
-        return null;
-    }
-    //getEvents
-    public EventsResult getEvents(String personID){
-        return null;
-    }
-
-    //TODO: What I don't have to worry about
-    //getPerson
-    //getEvent
-    //load >> testing purpose
-    //clear
-    //fill
-
     private static ServerProxy serverProxy;
 
-    // ========================== Singleton Constructor ========================================
     public static ServerProxy initialize()
     {
         if (serverProxy == null){
@@ -58,7 +30,6 @@ public class ServerProxy { //ServerFacade
     }
 
 
-    //____________________________________ Login _________________________________
     public LoginResult login(String serverHost, String serverPort, LoginRequest loginRequest)
     {
         Gson gson = new Gson();
@@ -86,16 +57,15 @@ public class ServerProxy { //ServerFacade
                 return loginResult;
             }
             else {
-                return new LoginResult(http.getResponseMessage());
+                return new LoginResult(http.getResponseMessage(), false);
             }
         }
         catch (IOException e) {
             e.printStackTrace();
-            return new LoginResult("Error with Login");
+            return new LoginResult("Error with Login", false);
         }
     }
 
-    //____________________________________ Register _________________________________
     public RegisterResult register(String serverHost, String serverPort, RegisterRequest regReq)
     {
         Gson gson = new Gson();
@@ -122,17 +92,16 @@ public class ServerProxy { //ServerFacade
                 return regResult;
             }
             else {
-                return new RegisterResult(http.getResponseMessage());
+                return new RegisterResult(http.getResponseMessage(), false);
             }
         }
         catch (IOException e) {
             e.printStackTrace();
-            return new RegisterResult("Error with Registering User");
+            return new RegisterResult("Error with Registering User", false);
         }
     }
 
-    //____________________________________ Get all People _________________________________
-    public AllPersonResults getAllPeople(String serverHost, String serverPort, String authToken)
+    public PersonsResult getPersonsResult(String serverHost, String serverPort, String authToken)
     {
         Gson gson = new Gson();
         try {
@@ -151,21 +120,20 @@ public class ServerProxy { //ServerFacade
 
                 InputStream respBody = http.getInputStream();
                 String respData = readString(respBody);
-                AllPersonResults allPersonResults = gson.fromJson(respData, AllPersonResults.class);
-                return allPersonResults;
+                PersonsResult personsResult = gson.fromJson(respData, PersonsResult.class);
+                return personsResult;
             }
             else {
-                return new AllPersonResults(http.getResponseMessage());
+                return new PersonsResult(http.getResponseMessage(), false);
             }
         }
         catch (IOException e) {
             e.printStackTrace();
-            return new AllPersonResults("Error with retrieving all people");
+            return new PersonsResult("Error with retrieving all people", false);
         }
     }
 
-    //____________________________________ Get all Events _________________________________
-    public AllEventResults getAllEvents(String serverHost, String serverPort, String authToken)
+    public EventsResult getEvents(String serverHost, String serverPort, String authToken)
     {
         Gson gson = new Gson();
         try {
@@ -184,38 +152,36 @@ public class ServerProxy { //ServerFacade
 
                 InputStream respBody = http.getInputStream();
                 String respData = readString(respBody);
-                AllEventResults allEventResults = gson.fromJson(respData, AllEventResults.class);
-                return allEventResults;
+                EventsResult eventsResult = gson.fromJson(respData, EventsResult.class);
+                return eventsResult;
             }
             else {
-                return new AllEventResults(http.getResponseMessage());
+                return new EventsResult(http.getResponseMessage(), false);
             }
         }
         catch (IOException e) {
             e.printStackTrace();
-            return new AllEventResults("Error with retrieving all events");
+            return new EventsResult("Error with retrieving all events", false);
         }
     }
 
-    //--****************-- InputStream to String --***************--
-    private static String readString(InputStream is) throws IOException
+    private static String readString(InputStream input) throws IOException
     {
-        StringBuilder sb = new StringBuilder();
-        InputStreamReader sr = new InputStreamReader(is);
-        char[] buf = new char[1024];
+        StringBuilder builder = new StringBuilder();
+        InputStreamReader reader = new InputStreamReader(input);
+        char[] buffer = new char[1024];
         int len;
-        while ((len = sr.read(buf)) > 0) {
-            sb.append(buf, 0, len);
+        while ((len = reader.read(buffer)) > 0) {
+            builder.append(buffer, 0, len);
         }
-        return sb.toString();
+        return builder.toString();
     }
 
-    //--****************-- Write a String from an OutputStream --***************--
-    private static void writeString(String str, OutputStream os) throws IOException
+    private static void writeString(String input, OutputStream output) throws IOException
     {
-        OutputStreamWriter sw = new OutputStreamWriter(os);
-        sw.write(str);
-        sw.flush();
+        OutputStreamWriter writer = new OutputStreamWriter(output);
+        writer.write(input);
+        writer.flush();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.familymap;
+package com.example.familymap.userInterface.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.familymap.BuildConfig;
+import com.example.familymap.Question;
+import com.example.familymap.QuizViewModel;
+import com.example.familymap.R;
 
 import java.time.Duration;
 import java.time.OffsetTime;
