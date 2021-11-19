@@ -16,13 +16,14 @@ import androidx.fragment.app.Fragment;
 import com.example.familymap.R;
 import com.example.familymap.net.tasks.LoginTask;
 import com.example.familymap.net.tasks.RegisterTask;
+import com.example.familymap.userInterface.activities.MainActivity;
 
 import Request.LoginRequest;
 import Request.RegisterRequest;
 
 public class LoginFragment extends Fragment implements LoginTask.LoginContext, RegisterTask.RegisterContext {
 
-    private LoginListener loginListener;
+    private MainActivity mainActivity;
     private TextWatcher mWatcher;
     private RegisterRequest mRegisterRequest;
     private LoginRequest mLoginRequest;
@@ -40,6 +41,11 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
 
     private Button mLoginButton;
     private Button mRegisterButton;
+
+    public LoginFragment(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
+
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -146,7 +152,7 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
     public void onExecuteComplete(String message)
     {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-        loginListener.loginComplete();
+        mainActivity.loginComplete();
     }
 
     private void validate()
@@ -185,15 +191,6 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
                 TextUtils.isEmpty(mIPAddress.getText()) ||
                 TextUtils.isEmpty(mUsername.getText()) ||
                 TextUtils.isEmpty(mPassword.getText());
-    }
-
-    public interface LoginListener {
-        void loginComplete();
-    }
-
-    public void setLoginListener(LoginListener logListen)
-    {
-        loginListener = logListen;
     }
 
     private class Enabler implements TextWatcher {

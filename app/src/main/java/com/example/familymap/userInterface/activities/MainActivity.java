@@ -10,7 +10,7 @@ import com.example.familymap.R;
 
 import com.example.familymap.userInterface.activities.fragments.*;
 
-public class MainActivity extends AppCompatActivity implements LoginFragment.LoginListener {
+public class MainActivity extends AppCompatActivity {
 
     private FragmentManager fm = getSupportFragmentManager();
 
@@ -29,13 +29,12 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
             fragmentTransaction.add(R.id.fragment_container, mapFragment).commit();
         }
         else if (fragment == null) {
-            fragment = new LoginFragment();
-            ((LoginFragment) fragment).setLoginListener(this);
+            fragment = new LoginFragment(this);
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
     }
 
-    @Override
+
     public void loginComplete()
     {
         Fragment mapFragment = new MyMapFragment();

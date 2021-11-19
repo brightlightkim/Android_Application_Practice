@@ -283,10 +283,15 @@ public class DataCache {
     private void initializeEventTypes()
     {
         ArrayList<Event> eventsArray = new ArrayList<>();
-        for (Event currEvent : events.values()) {
-            eventsArray.add(currEvent);
+        try {
+            for (Event currEvent : events.values()) {
+                eventsArray.add(currEvent);
+            }
         }
-
+        catch (NullPointerException exception){
+            exception.printStackTrace();
+            throw new NullPointerException("events values are null");
+        }
         eventColor = new HashMap<>();
         eventTypes = new ArrayList<>();
         for (int i = 0; i < eventsArray.size(); i++){

@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="10.0.2.2" />
+                android:text="192.168.35.248" />
         </LinearLayout>
 
         <LinearLayout
@@ -120,6 +120,7 @@
                 android:layout_width="255dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:text="sheila"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
@@ -141,6 +142,7 @@
                 android:layout_width="255dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:text="Parker"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
@@ -163,6 +165,7 @@
                 android:layout_width="255dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:text="taeyangk@gmail.com"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
