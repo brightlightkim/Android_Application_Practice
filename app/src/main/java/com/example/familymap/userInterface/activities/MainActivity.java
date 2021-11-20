@@ -6,31 +6,34 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
+
 import com.example.familymap.R;
 
 import com.example.familymap.userInterface.activities.fragments.*;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoginFragment.LoginListener{
 
-    private FragmentManager fm = getSupportFragmentManager();
+    private FragmentManager fragmentManager = getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+        Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_container);
 
         if ((getIntent().getExtras() != null) && (getIntent().getExtras().containsKey("Re-sync"))){
 
             Fragment mapFragment = new MyMapFragment();
-            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
             fragmentTransaction.add(R.id.fragment_container, mapFragment).commit();
         }
         else if (fragment == null) {
             fragment = new LoginFragment(this);
-            fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
+            ((LoginFragment) fragment).setLoginListener(this);
+            fragmentManager.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
     }
 
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public void loginComplete()
     {
         Fragment mapFragment = new MyMapFragment();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         fragmentTransaction.replace(R.id.fragment_container, mapFragment);
         fragmentTransaction.addToBackStack(null);

@@ -27,6 +27,7 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
     private TextWatcher mWatcher;
     private RegisterRequest mRegisterRequest;
     private LoginRequest mLoginRequest;
+    private LoginListener loginListener;
 
     private EditText mServerHost;
     private EditText mIPAddress;
@@ -41,6 +42,31 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
 
     private Button mLoginButton;
     private Button mRegisterButton;
+
+    ////////// Public Interface for Tasks ////////////
+    public interface LoginListener {
+        void loginComplete();
+    }
+
+    public void setLoginListener(LoginListener logListen)
+    {
+        loginListener = logListen;
+    }
+
+    ////////////// TextWatcher //////////////
+    private class Enabler implements TextWatcher {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            validate();
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {}
+
+    }
 
     public LoginFragment(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -152,7 +178,7 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
     public void onExecuteComplete(String message)
     {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-        mainActivity.loginComplete();
+        loginListener.loginComplete();
     }
 
     private void validate()
@@ -193,17 +219,4 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
                 TextUtils.isEmpty(mPassword.getText());
     }
 
-    private class Enabler implements TextWatcher {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            validate();
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {}
-
-    }
 }
