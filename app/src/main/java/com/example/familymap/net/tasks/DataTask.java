@@ -56,6 +56,7 @@ public class DataTask extends AsyncTask<String, Boolean, Boolean> {
     @Override
     protected void onPostExecute(Boolean bool) {
         if (bool){
+            //TODO: Fix Here for the Login Assignment.
             Person user = dataCache.getUser();
             String message = "Welcome, " + user.getFirstName() + " " + user.getLastName();
             context.onExecuteCompleteData(message);
@@ -78,10 +79,17 @@ public class DataTask extends AsyncTask<String, Boolean, Boolean> {
         if (personsResult.getMessage() == null){
             Map<String, Person> personsMap = new HashMap<>();
             ArrayList<PersonResult> personArray = personsResult.getData();
-
-            Person initialPerson = new Person(personArray.get(0).getPersonID(), personArray.get(0).getAssociatedUsername(),
-                    personArray.get(0).getFirstName(), personArray.get(0).getLastName(), personArray.get(0).getGender(),
-                    personArray.get(0).getFatherID(), personArray.get(0).getMotherID(), personArray.get(0).getSpouseID());
+            int desiredNum = 0;
+            for (int i = 0; i < personArray.size(); i++){
+                if (personArray.get(i).getSpouseID() == null){
+                    desiredNum = i;
+                    break;
+                }
+            }
+            PersonResult user = personArray.get(desiredNum);
+            Person initialPerson = new Person(user.getPersonID(), user.getAssociatedUsername(),
+                    user.getFirstName(), user.getLastName(), user.getGender(),
+                    user.getFatherID(), user.getMotherID(), user.getSpouseID());
             dataCache.setUser(initialPerson);
 
             for(int i = 0; i < personArray.size(); i++){
