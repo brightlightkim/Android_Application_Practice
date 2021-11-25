@@ -49,6 +49,8 @@ public class ServerProxy { //ServerFacade
             OutputStream body = http.getOutputStream();
             writeString(requestInfo, body);
 
+            body.close();
+
             if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
 
                 InputStream respBody = http.getInputStream();
@@ -76,6 +78,10 @@ public class ServerProxy { //ServerFacade
 
             http.setRequestMethod("POST");
             http.setDoOutput(true);
+
+            // Add an auth token to the request in the HTTP "Authorization" header
+            // http.addRequestProperty("Authorization", "afj232hj2332");
+
             http.addRequestProperty("Accept", "application/json");
 
             http.connect();
@@ -84,14 +90,17 @@ public class ServerProxy { //ServerFacade
             OutputStream body = http.getOutputStream();
             writeString(requestInfo, body);
 
-            if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            body.close();
 
+            if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream respBody = http.getInputStream();
                 String respData = readString(respBody);
                 RegisterResult regResult = gson.fromJson(respData, RegisterResult.class);
                 return regResult;
             }
             else {
+                //indicate that something went wrong.
+                System.out.println("ERROR: " + http.getResponseMessage());
                 return new RegisterResult(http.getResponseMessage(), false);
             }
         }

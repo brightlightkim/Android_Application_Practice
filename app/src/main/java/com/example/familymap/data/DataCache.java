@@ -1,5 +1,7 @@
 package com.example.familymap.data;
 
+import androidx.lifecycle.ViewModel;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,16 +12,16 @@ import java.util.Set;
 import Model.Person;
 import Model.Event;
 
-public class DataCache {
-    Map<String, Person> people; //Person ID
-    Map<String, Event> events; //Event ID
+public class DataCache extends ViewModel {
+    private Map<String, Person> people; //Person ID
+    private Map<String, Event> events; //Event ID
 
-    Map<String, Event> displayedEvents;
-    Map<String, List<Event>> allPersonEvents; // by person ID
+    private Map<String, Event> displayedEvents;
+    private Map<String, List<Event>> allPersonEvents; // by person ID
 
-    Set<String> paternalAncestors;
-    Set<String> maternalAncestors;
-    Map<String, Person> children;
+    private Set<String> paternalAncestors;
+    private Set<String> maternalAncestors;
+    private Map<String, Person> children;
 
     private Settings settings;
     private Filter filter;
@@ -36,9 +38,12 @@ public class DataCache {
     private Person selectedPerson;
     private Event selectedEvent;
 
-    private static DataCache instance = new DataCache();
+    private static DataCache instance;
 
     public static DataCache initialize() {
+        if (instance == null){
+            instance = new DataCache();
+        }
         return instance;
     }
 
