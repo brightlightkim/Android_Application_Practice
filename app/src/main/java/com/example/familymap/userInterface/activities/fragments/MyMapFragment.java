@@ -41,7 +41,7 @@ import java.util.Map;
 import Model.Event;
 import Model.Person;
 
-public class MyMapFragment extends Fragment implements OnMapReadyCallback {
+public class MyMapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMapLoadedCallback {
 
     private GoogleMap mMap;
     private SupportMapFragment mapFragment;
@@ -454,5 +454,8 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback {
     }
 
 
+    @Override
+    public void onMapLoaded() {
 
+    }
 }

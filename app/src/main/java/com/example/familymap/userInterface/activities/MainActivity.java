@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_container);
 

@@ -163,8 +163,7 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
                 mRegisterRequest.setPassword(mPassword.getText().toString());
 
                 RegisterTask regTask = new RegisterTask(mServerHost.getText().toString(),
-                        mIPAddress.getText().toString(),
-                        LoginFragment.this);
+                        mIPAddress.getText().toString(), LoginFragment.this);
 
                 regTask.execute(mRegisterRequest);
             }

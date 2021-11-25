@@ -17,7 +17,7 @@ import Result.LoginResult;
 import Result.PersonsResult;
 import Result.RegisterResult;
 
-public class ServerProxy { //ServerFacade
+public class ServerProxy {
 
     private static ServerProxy serverProxy;
 
@@ -36,30 +36,30 @@ public class ServerProxy { //ServerFacade
         try {
             URL url = new URL("http://" + serverHost + ":" + serverPort + "/user/login");
 
-            HttpURLConnection http = (HttpURLConnection)url.openConnection();
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-            http.setRequestMethod("POST");
-            http.setDoOutput(true);
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
 
-            http.addRequestProperty("Accept", "application/json");
+            connection.addRequestProperty("Accept", "application/json");
 
-            http.connect();
+            connection.connect();
 
             String requestInfo = gson.toJson(loginRequest);
-            OutputStream body = http.getOutputStream();
+            OutputStream body = connection.getOutputStream();
             writeString(requestInfo, body);
 
             body.close();
 
-            if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
 
-                InputStream respBody = http.getInputStream();
+                InputStream respBody = connection.getInputStream();
                 String respData = readString(respBody);
                 LoginResult loginResult = gson.fromJson(respData, LoginResult.class);
                 return loginResult;
             }
             else {
-                return new LoginResult(http.getResponseMessage(), false);
+                return new LoginResult(connection.getResponseMessage(), false);
             }
         }
         catch (IOException e) {
@@ -74,34 +74,34 @@ public class ServerProxy { //ServerFacade
         try {
             URL url = new URL("http://" + serverHost + ":" + serverPort + "/user/register");
 
-            HttpURLConnection http = (HttpURLConnection)url.openConnection();
+            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 
-            http.setRequestMethod("POST");
-            http.setDoOutput(true);
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
 
             // Add an auth token to the request in the HTTP "Authorization" header
             // http.addRequestProperty("Authorization", "afj232hj2332");
 
-            http.addRequestProperty("Accept", "application/json");
+            connection.addRequestProperty("Accept", "application/json");
 
-            http.connect();
+            connection.connect();
 
             String requestInfo = gson.toJson(regReq);
-            OutputStream body = http.getOutputStream();
+            OutputStream body = connection.getOutputStream();
             writeString(requestInfo, body);
 
             body.close();
 
-            if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                InputStream respBody = http.getInputStream();
+            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                InputStream respBody = connection.getInputStream();
                 String respData = readString(respBody);
                 RegisterResult regResult = gson.fromJson(respData, RegisterResult.class);
                 return regResult;
             }
             else {
                 //indicate that something went wrong.
-                System.out.println("ERROR: " + http.getResponseMessage());
-                return new RegisterResult(http.getResponseMessage(), false);
+                System.out.println("ERROR: " + connection.getResponseMessage());
+                return new RegisterResult(connection.getResponseMessage(), false);
             }
         }
         catch (IOException e) {
@@ -116,24 +116,24 @@ public class ServerProxy { //ServerFacade
         try {
             URL url = new URL("http://" + serverHost + ":" + serverPort + "/person");
 
-            HttpURLConnection http = (HttpURLConnection)url.openConnection();
+            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 
-            http.setRequestMethod("GET");
-            http.setDoOutput(false);
-            http.addRequestProperty("Authorization", authToken);
-            http.addRequestProperty("Accept", "application/json");
+            connection.setRequestMethod("GET");
+            connection.setDoOutput(false);
+            connection.addRequestProperty("Authorization", authToken);
+            connection.addRequestProperty("Accept", "application/json");
 
-            http.connect();
+            connection.connect();
 
-            if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
 
-                InputStream respBody = http.getInputStream();
+                InputStream respBody = connection.getInputStream();
                 String respData = readString(respBody);
                 PersonsResult personsResult = gson.fromJson(respData, PersonsResult.class);
                 return personsResult;
             }
             else {
-                return new PersonsResult(http.getResponseMessage(), false);
+                return new PersonsResult(connection.getResponseMessage(), false);
             }
         }
         catch (IOException e) {
@@ -148,24 +148,24 @@ public class ServerProxy { //ServerFacade
         try {
             URL url = new URL("http://" + serverHost + ":" + serverPort + "/event");
 
-            HttpURLConnection http = (HttpURLConnection)url.openConnection();
+            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 
-            http.setRequestMethod("GET");
-            http.setDoOutput(false);
-            http.addRequestProperty("Authorization", authToken);
-            http.addRequestProperty("Accept", "application/json");
+            connection.setRequestMethod("GET");
+            connection.setDoOutput(false);
+            connection.addRequestProperty("Authorization", authToken);
+            connection.addRequestProperty("Accept", "application/json");
 
-            http.connect();
+            connection.connect();
 
-            if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
 
-                InputStream respBody = http.getInputStream();
+                InputStream respBody = connection.getInputStream();
                 String respData = readString(respBody);
                 EventsResult eventsResult = gson.fromJson(respData, EventsResult.class);
                 return eventsResult;
             }
             else {
-                return new EventsResult(http.getResponseMessage(), false);
+                return new EventsResult(connection.getResponseMessage(), false);
             }
         }
         catch (IOException e) {
