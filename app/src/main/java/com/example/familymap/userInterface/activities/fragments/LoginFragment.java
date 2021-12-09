@@ -114,7 +114,7 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
             @Override
             public void onClick(View v)
             {
-                mRegisterRequest.setGender("m");
+                mRegisterRequest.setGender("MALE");
                 validate();
             }
         });
@@ -125,7 +125,7 @@ public class LoginFragment extends Fragment implements LoginTask.LoginContext, R
             @Override
             public void onClick(View v)
             {
-                mRegisterRequest.setGender("f");
+                mRegisterRequest.setGender("FEMALE");
                 validate();
             }
         });

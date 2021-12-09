@@ -45,9 +45,6 @@ public class LoginTask extends AsyncTask<LoginRequest, LoginResult, LoginResult>
     protected void onPostExecute(LoginResult loginResult)
     {
         if (loginResult.getMessage() == null){
-            //TODO: Fix Here for the Login Assignment to just print
-            //context.onExecuteComplete( +++++MESSAGE+++++ )
-
             DataCache dataCache = DataCache.initialize();
 
             dataCache.setServerHost(serverHost);
