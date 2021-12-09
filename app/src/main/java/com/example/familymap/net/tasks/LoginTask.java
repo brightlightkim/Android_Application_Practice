@@ -34,7 +34,7 @@ public class LoginTask extends AsyncTask<LoginRequest, LoginResult, LoginResult>
     //--****************-- Do In Background --***************--
     @Override
     protected LoginResult doInBackground(LoginRequest... logReqs)
-    {
+    { //for the Handler job
         ServerProxy serverProxy = ServerProxy.initialize();
         LoginResult loginResult = serverProxy.login(serverHost, ipAddress, logReqs[0]);
         return loginResult;
@@ -43,7 +43,7 @@ public class LoginTask extends AsyncTask<LoginRequest, LoginResult, LoginResult>
     //--****************-- On Post Execute --***************--
     @Override
     protected void onPostExecute(LoginResult loginResult)
-    {
+    { //for the run
         if (loginResult.getMessage() == null){
             DataCache dataCache = DataCache.initialize();
 

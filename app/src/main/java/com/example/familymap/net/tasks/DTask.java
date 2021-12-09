@@ -45,7 +45,8 @@ public class DTask implements Runnable{
         EventsResult allEventResults = serverProxy.getEvents(serverHost, ipAddress, authToken[0]);
 
         Boolean bool = sendDataToModel(allPersonResults, allEventResults);
-
+        //TODO: Setting up the data & pass it to the message for the Handler class
+        //TODO: Which will be located in the fragment class clickEventListener.
     }
 
     private void sendMessage(int progress, Long totalSize) {
