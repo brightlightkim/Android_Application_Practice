@@ -43,9 +43,8 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
         Fragment mapFragment = new MyMapFragment();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        //fragmentTransaction.replace(R.id.fragment_container, mapFragment);
+        fragmentTransaction.replace(R.id.fragment_container, mapFragment);
         fragmentTransaction.addToBackStack(null);
-        //TODO: Fix Here!!!!!!!!!
         fragmentTransaction.commit();
     }
 

@@ -56,7 +56,6 @@ public class DataTask extends AsyncTask<String, Boolean, Boolean> {
     @Override
     protected void onPostExecute(Boolean bool) {
         if (bool){
-            //TODO: Fix Here for the Login Assignment.
             Person user = dataCache.getUser();
             String message = "Welcome, " + user.getFirstName() + " " + user.getLastName();
             context.onExecuteCompleteData(message);
